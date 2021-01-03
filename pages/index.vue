@@ -30,7 +30,7 @@ export default Vue.extend({
   data () {
     return {
       title: process.env.appName,
-      fb: process.env.FIREBASE_CONFIG
+      fb: process.env.GCLOUD_PROJECT
     }
   },
   methods: {

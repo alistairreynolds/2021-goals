@@ -44,7 +44,9 @@ export default {
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  axios: {},
+  axios: {
+    baseURL: 'https://reynolds-2021-goals-default-rtdb.europe-west1.firebasedatabase.app/'
+  },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
