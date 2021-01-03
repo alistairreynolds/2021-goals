@@ -4,6 +4,7 @@
       <h1 class="title">
         {{ title }}
       </h1>
+      <p>{{ fb }}</p>
       <div class="links">
         <AppButton
           class="green"
@@ -28,7 +29,8 @@ import Vue from 'vue'
 export default Vue.extend({
   data () {
     return {
-      title: process.env.appName
+      title: process.env.appName,
+      fb: process.env.FIREBASE_CONFIG
     }
   },
   methods: {
