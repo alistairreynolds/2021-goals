@@ -48,5 +48,10 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
+  },
+
+  env: {
+    fbURL: 'https://reynolds-2021-goals-default-rtdb.europe-west1.firebasedatabase.app/',
+    appName: 'Reynolds 2021 Goals'
   }
 }

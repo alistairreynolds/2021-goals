@@ -1,27 +1,22 @@
 <template>
   <div class="container">
     <div>
-      <Logo />
       <h1 class="title">
-        2021-goals
+        {{ title }}
       </h1>
       <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
+        <AppButton
+          class="green"
+          @click="onClick('alistair')"
         >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
+          Alistair
+        </AppButton>
+        <AppButton
+          class="purple"
+          @click="onClick('tina')"
         >
-          GitHub
-        </a>
+          Tina
+        </AppButton>
       </div>
     </div>
   </div>
@@ -30,7 +25,18 @@
 <script lang="ts">
 import Vue from 'vue'
 
-export default Vue.extend({})
+export default Vue.extend({
+  data () {
+    return {
+      title: process.env.appName
+    }
+  },
+  methods: {
+    onClick (user) {
+      this.$router.push(`/goals/${user}`)
+    }
+  }
+})
 </script>
 
 <style>
@@ -64,14 +70,6 @@ export default Vue.extend({})
   font-size: 100px;
   color: #35495e;
   letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
 }
 
 .links {
