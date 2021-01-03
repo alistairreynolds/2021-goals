@@ -18,6 +18,17 @@ export const actions = {
       .then((r) => {
         vueContext.commit('add', { ...goalData, id: r.name })
       })
+  },
+  get (vueContext) {
+    return this.$axios
+      .$get('goals.json')
+      .then((r) => {
+        const goalsArray = []
+        for (const key in r) {
+          goalsArray.push({ ...r[key], id: key })
+        }
+        vueContext.commit('set', goalsArray)
+      })
   }
 }
 

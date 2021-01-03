@@ -7,7 +7,6 @@ export const actions = {
         for (const key in r) {
           goalsArray.push({ ...r[key], id: key })
         }
-        console.log(goalsArray)
         vueContext.commit('goals/set', goalsArray)
       })
   }

@@ -29,8 +29,7 @@ import Vue from 'vue'
 export default Vue.extend({
   data () {
     return {
-      title: process.env.appName,
-      fb: process.env.GCLOUD_PROJECT
+      title: process.env.app_name
     }
   },
   methods: {
