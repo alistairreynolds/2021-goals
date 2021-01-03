@@ -32,7 +32,7 @@ export default Vue.extend({
     }
   },
   methods: {
-    onClick (user) {
+    onClick (user: string) {
       this.$router.push(`/goals/${user}`)
     }
   }
