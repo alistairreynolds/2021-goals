@@ -6,23 +6,23 @@ export const mutations = {
   add (state, goalData) {
     state.goals.push(goalData)
   },
-  remove (state, { goal }) {
-    state.goals.splice(state.goals.indexOf(goal), 1)
-  },
-  toggle (_, goal) {
-    goal.done = !goal.done
+  set (state, goals) {
+    state.goals = goals
   }
 }
 
 export const actions = {
-  add (vueContext, goalData) {
-    const user = goalData.user
-    const goal = goalData.name
-
+  store (vueContext, goalData) {
     return this.$axios
-      .$post(`${user}-goals.json`, { name: goal, completed: false })
+      .$post('goals.json', goalData)
       .then((r) => {
-        vueContext.commit('add', r)
+        vueContext.commit('add', { ...goalData, id: r.name })
       })
+  }
+}
+
+export const getters = {
+  forUser: state => (user) => {
+    return state.goals.filter(goal => goal.user === user)
   }
 }

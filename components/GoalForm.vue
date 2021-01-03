@@ -4,9 +4,6 @@
       <AppInput v-model="editedGoal.name">
         Goal
       </AppInput>
-      <AppInput v-model="editedGoal.user">
-        User
-      </AppInput>
       <AppButton type="submit">
         Go
       </AppButton>
@@ -18,12 +15,17 @@
 export default {
   name: 'GoalForm',
   props: {
+    user: {
+      type: String,
+      required: true
+    },
     goal: {
       type: Object,
       default () {
         return {
           name: '',
-          user: 'Alistair'
+          user: this.user,
+          completed: false
         }
       }
     }
