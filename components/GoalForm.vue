@@ -53,8 +53,4 @@ export default {
 
 <style scoped>
 
-  form{
-    width: 800px;
-  }
-
 </style>
