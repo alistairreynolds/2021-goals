@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h2>Create goal for {{ user }}</h2>
     <GoalForm :user="user" @submit="onSubmit" />
   </div>
 </template>

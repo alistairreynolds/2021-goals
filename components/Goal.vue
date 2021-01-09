@@ -13,6 +13,19 @@ export default {
       type: String,
       required: true
     },
+    user: {
+      type: String,
+      required: true
+    },
+    countable: {
+      type: Boolean,
+      default: false
+    },
+    count: {
+      type: Number,
+      required: false,
+      default: 1
+    },
     completed: {
       type: Boolean,
       default: false

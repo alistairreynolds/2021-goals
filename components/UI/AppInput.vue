@@ -1,13 +1,15 @@
 <template>
-  <div>
-    <label>
+  <div class="input-wrapper">
+    <label :for="_uid">
       <slot />
-      <input
-        v-bind="$attrs"
-        :placeholder="label"
-        :value="value"
-        @input="$emit('input', $event.target.value)"
-      ></label>
+    </label>
+    <input
+      :id="_uid"
+      v-bind="$attrs"
+      :placeholder="label"
+      :value="value"
+      @input="$emit('input', $event.target.value)"
+    >
   </div>
 </template>
 
@@ -28,9 +30,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.input-wrapper {
 
-  input{
-    border: 1px solid var(--col-green)
-  }
-
+}
 </style>

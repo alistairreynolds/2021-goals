@@ -4,6 +4,12 @@
       <AppInput v-model="editedGoal.name">
         Goal
       </AppInput>
+      <AppCheckbox v-model="editedGoal.countable">
+        Countable
+      </AppCheckbox>
+      <AppStepper v-model="editedGoal.count">
+        Quantity to complete
+      </AppStepper>
       <AppButton type="submit">
         Go
       </AppButton>
@@ -25,7 +31,9 @@ export default {
         return {
           name: '',
           user: this.user,
-          completed: false
+          completed: false,
+          countable: false,
+          count: 1
         }
       }
     }
@@ -43,6 +51,10 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style scoped>
+
+  form{
+    width: 800px;
+  }
 
 </style>

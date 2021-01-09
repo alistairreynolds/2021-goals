@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<style>
+<style lang="scss">
 html {
   font-family:
     'Source Sans Pro',
@@ -24,15 +24,53 @@ html {
   box-sizing: border-box;
 }
 
+body{
+  margin: 20px auto;
+  max-width: 1200px;
+}
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
-  margin: 0;
 }
 
 :root {
   --col-green: #3b8070;
+  --col-grey: #bababa;
   --col-purple: #7a4b8d;
 }
+
+h2{
+  font-size: 3rem;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.input-wrapper {
+  margin: 10px 0;
+
+  label {
+    display: block;
+    font-weight: bold;
+  }
+
+  input,
+  textarea {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid var(--col-grey);
+    font: inherit;
+    padding: 5px;
+  }
+
+  input:focus,
+  textarea:focus {
+    border: 1px solid var(--col-green);
+    outline: none;
+  }
+
+}
+
 </style>

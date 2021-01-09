@@ -1,12 +1,15 @@
 <template>
   <div>
+
     <h2>{{ user }}'s goals</h2>
-    <div v-for="goal of goals" :key="goal.id">
-      {{ goal.name }}
-    </div>
-    <AppButton @click="onClick">
+
+    <AppButton class="mb-2 float-right" @click="onClick">
       Create Goal
     </AppButton>
+
+    <ul v-for="goal of goals" :key="goal.id">
+      <li>{{ goal.name }}</li>
+    </ul>
   </div>
 </template>
 
