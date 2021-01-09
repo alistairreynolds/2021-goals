@@ -25,9 +25,6 @@ export default {
       return this.$route.params.user
     }
   },
-  created () {
-    this.$store.dispatch('goals/get')
-  },
   methods: {
     createOnClick () {
       this.$router.push(`/goals/${this.user}/create`)
