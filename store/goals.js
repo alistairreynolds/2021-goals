@@ -12,6 +12,10 @@ export const mutations = {
   update (state, updatedGoal) {
     const index = state.goals.findIndex(goal => updatedGoal.id === goal.id)
     state.goals[index] = updatedGoal
+  },
+  toggleGoalStatus (state, updatedGoal) {
+    const index = state.goals.findIndex(goal => updatedGoal.id === goal.id)
+    state.goals[index].completed = !updatedGoal.completed
   }
 }
 
@@ -36,18 +40,29 @@ export const actions = {
         vueContext.commit('set', goalsArray)
       })
   },
-  // Update goal status
+  // Update goal data
   update (vueContext, goal) {
     this.$axios
+      // Update on the server
       .$put(`goals/${goal.id}.json`, goal)
-      .then(_ => {
+      .then((_) => {
+        // Then push the result to the state
         vueContext.commit('update', goal)
       })
+  },
+  // Change goal "completed" status
+  toggleStatus (vueContext, goal) {
+    // Call the mutator
+    vueContext.commit('toggleGoalStatus', goal)
+    vueContext.dispatch('update', goal)
   }
 }
 
 export const getters = {
   forUser: state => (user) => {
     return state.goals.filter(goal => goal.user === user)
+  },
+  byId: state => (id) => {
+    return state.goals.find(goal => goal.id === id)
   }
 }

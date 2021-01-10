@@ -12,7 +12,7 @@
           :key="goal.id"
           class="clickable mx-0"
           :class="{completed: goal.completed}"
-          @click="markGoalComplete(goal)"
+          @click="toggleGoalStatus(goal)"
         >
           {{ goal.name }}
         </span>
@@ -40,9 +40,9 @@ export default {
     openEditGoal (goal) {
       this.$router.push(`/goals/${this.user}/${goal.id}`)
     },
-    markGoalComplete (goal) {
-      goal.completed = !goal.completed
-      this.$store.dispatch('goals/update', goal)
+    toggleGoalStatus (goal) {
+      // We shouldn't directly alter the goal status, so handle via an action to trigger the mutator
+      this.$store.dispatch('goals/toggleStatus', goal)
     }
   }
 }

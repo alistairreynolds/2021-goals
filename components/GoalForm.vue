@@ -11,7 +11,7 @@
         Quantity to complete
       </AppStepper>
       <AppButton type="submit">
-        Go
+        Save
       </AppButton>
     </form>
   </div>
