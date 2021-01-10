@@ -1,7 +1,10 @@
 <template>
   <div>
     <h2>{{ goal.name }}</h2>
-    <GoalForm :user="goal.user" :goal="goal" @submit="saveGoal" />
+    <GoalForm
+      :goal="goal"
+      @submit="saveGoal"
+    />
 
     <AppButton @click="addSubGoal">
       Create sub-goal
@@ -21,11 +24,10 @@ export default {
     }
   },
   methods: {
-    saveGoal () {
-      this.goal.completed = !this.goal.completed
-      this.$store.dispatch('goals/update', this.goal)
+    saveGoal (editedGoal) {
+      this.$store.dispatch('goals/update', editedGoal)
         .then((_) => {
-          return this.$router.push(`/goals/${this.goal.user}/`)
+          return this.$router.push(`/goals/${editedGoal.user}/`)
         })
     },
     addSubGoal () {

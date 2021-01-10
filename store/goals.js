@@ -42,7 +42,7 @@ export const actions = {
   },
   // Update goal data
   update (vueContext, goal) {
-    this.$axios
+    return this.$axios
       // Update on the server
       .$put(`goals/${goal.id}.json`, goal)
       .then((_) => {
@@ -52,9 +52,10 @@ export const actions = {
   },
   // Change goal "completed" status
   toggleStatus (vueContext, goal) {
-    // Call the mutator
+    // Call the mutator first so that we change its completed status
     vueContext.commit('toggleGoalStatus', goal)
-    vueContext.dispatch('update', goal)
+    // Then dispatch the event to update it on firebase
+    return vueContext.dispatch('update', goal)
   }
 }
 

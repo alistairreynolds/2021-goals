@@ -23,10 +23,14 @@ export default {
   props: {
     user: {
       type: String,
-      required: true
+      required: false,
+      default () {
+        return ''
+      }
     },
     goal: {
       type: Object,
+      required: false,
       default () {
         return {
           name: '',
@@ -38,9 +42,11 @@ export default {
       }
     }
   },
-  data () {
-    return {
-      editedGoal: this.goal
+  computed: {
+    editedGoal () {
+      // Return a new object from destructuring the goal so that we're not binding the goal to the form,
+      // which is invalid as we shouldn't be mutating the goal outside of the store
+      return { ...this.goal }
     }
   },
   methods: {
