@@ -27,6 +27,7 @@
 import Vue from 'vue'
 
 export default Vue.extend({
+  layout: 'landingPage',
   data () {
     return {
       title: process.env.app_name
