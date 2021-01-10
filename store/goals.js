@@ -63,7 +63,10 @@ export const actions = {
 
 export const getters = {
   forUser: state => (user) => {
-    return state.goals.filter(goal => goal.user === user)
+    return state.goals.filter(goal => goal.user === user && !goal.parentGoalId)
+  },
+  forParentGoalId: state => (parentGoalId) => {
+    return state.goals.filter(goal => goal.parentGoalId === parentGoalId)
   },
   byId: state => (id) => {
     return state.goals.find(goal => goal.id === id)

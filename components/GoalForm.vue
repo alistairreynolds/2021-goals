@@ -7,12 +7,6 @@
       <AppCheckbox v-model="editedGoal.completed" :checked="editedGoal.completed">
         Completed
       </AppCheckbox>
-      <AppCheckbox v-model="editedGoal.countable" :checked="editedGoal.countable">
-        Countable
-      </AppCheckbox>
-      <AppStepper v-model="editedGoal.count">
-        Quantity to complete
-      </AppStepper>
       <div class="flex flex-row col-gap-2 justify-end mt-4">
         <AppButton type="submit">
           Save
@@ -52,7 +46,7 @@ export default {
           completed: false,
           countable: false,
           count: 1,
-          parentGoalId: this.parentGoalId
+          parentGoalId: this.parentGoalId ? this.parentGoalId : null
         }
       }
     }
@@ -62,6 +56,12 @@ export default {
       // Return a new object from destructuring the goal so that we're not binding the goal to the form,
       // which is invalid as we shouldn't be mutating the goal outside of the store
       return { ...this.goal }
+    }
+  },
+  mounted () {
+    if (!this.goal.id) {
+      // This is a new goal so we should set the focus to the name input
+      document.querySelector('input').focus()
     }
   },
   methods: {
