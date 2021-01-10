@@ -55,7 +55,9 @@ export const actions = {
     // Call the mutator first so that we change its completed status
     vueContext.commit('toggleGoalStatus', goal)
     // Then dispatch the event to update it on firebase
-    return vueContext.dispatch('update', goal)
+    return this.$axios
+      // Update on the server
+      .$put(`goals/${goal.id}.json`, goal)
   }
 }
 

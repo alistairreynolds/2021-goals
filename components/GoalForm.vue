@@ -4,7 +4,10 @@
       <AppInput v-model="editedGoal.name">
         Goal
       </AppInput>
-      <AppCheckbox v-model="editedGoal.countable">
+      <AppCheckbox v-model="editedGoal.completed" :checked="editedGoal.completed">
+        Completed
+      </AppCheckbox>
+      <AppCheckbox v-model="editedGoal.countable" :checked="editedGoal.countable">
         Countable
       </AppCheckbox>
       <AppStepper v-model="editedGoal.count">
@@ -51,6 +54,7 @@ export default {
   },
   methods: {
     onSubmit () {
+      console.log(this.editedGoal)
       this.$emit('submit', this.editedGoal)
     }
   }

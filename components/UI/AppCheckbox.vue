@@ -3,13 +3,32 @@
     <label :for="_uid" class="flex flex-col">
       <slot />
     </label>
-    <input :id="_uid" type="checkbox">
+    <input
+      :id="_uid"
+      type="checkbox"
+      :checked="checked"
+      value="1"
+      @change="onChange"
+    >
   </div>
 </template>
 
 <script>
 export default {
-  name: 'AppCheckbox'
+  name: 'AppCheckbox',
+  props: {
+    checked: {
+      type: Boolean,
+      required: false,
+      default: false
+    }
+  },
+  methods: {
+    onChange () {
+      // this.checked = !this.checked
+      this.$emit('input', !this.checked)
+    }
+  }
 }
 </script>
 

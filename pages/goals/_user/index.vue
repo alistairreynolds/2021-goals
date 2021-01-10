@@ -6,19 +6,18 @@
       Create Goal
     </AppButton>
 
-    <div class="goals-list">
-      <template v-for="goal of goals">
-        <span
-          :key="goal.id"
-          class="clickable mx-0"
-          :class="{completed: goal.completed}"
-          @click="toggleGoalStatus(goal)"
-        >
-          {{ goal.name }}
-        </span>
-        <EditIcon class="clickable" @click="openEditGoal(goal)" />
-      </template>
-    </div>
+    <ul class="goals-list">
+      <li
+        v-for="goal of goals"
+        :key="goal.id"
+        class="clickable mx-0"
+        :class="{completed: goal.completed}"
+        @click="openEditGoal(goal)"
+      >
+        {{ goal.name }}
+      </li>
+      <!--        <EditIcon class="clickable" @click="openEditGoal(goal)" />-->
+    </ul>
   </div>
 </template>
 
@@ -51,11 +50,12 @@ export default {
 <style scoped lang="scss">
 
 .goals-list{
-  display: grid;
-  grid-template-columns: max-content min-content;
-  width: auto;
-  column-gap: 10px;
-  align-items: center;
+  width: max-content;
+  //display: grid;
+  //grid-template-columns: max-content min-content;
+  //width: auto;
+  //column-gap: 10px;
+  //align-items: center;
 }
 
 </style>
