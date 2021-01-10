@@ -6,11 +6,19 @@
       Create Goal
     </AppButton>
 
-    <ul class="goals-list">
-      <li v-for="goal of goals" :key="goal.id" class="mb-2 cursor-pointer mx-0" @click="goalOnClick(goal.id)">
-        {{ goal.name }}
-      </li>
-    </ul>
+    <div class="goals-list">
+      <template v-for="goal of goals">
+        <span
+          :key="goal.id"
+          class="clickable mx-0"
+          :class="{completed: goal.completed}"
+          @click="markGoalComplete(goal)"
+        >
+          {{ goal.name }}
+        </span>
+        <EditIcon class="clickable" @click="openEditGoal(goal)" />
+      </template>
+    </div>
   </div>
 </template>
 
@@ -29,8 +37,12 @@ export default {
     createOnClick () {
       this.$router.push(`/goals/${this.user}/create`)
     },
-    goalOnClick (id) {
-      this.$router.push(`/goals/${this.user}/${id}`)
+    openEditGoal (goal) {
+      this.$router.push(`/goals/${this.user}/${goal.id}`)
+    },
+    markGoalComplete (goal) {
+      goal.completed = !goal.completed
+      this.$store.dispatch('goals/update', goal)
     }
   }
 }
@@ -38,13 +50,12 @@ export default {
 
 <style scoped lang="scss">
 
-ul.goals-list{
-  li {
-    width: fit-content;
-    &:hover {
-      color: var(--col-green);
-    }
-  }
+.goals-list{
+  display: grid;
+  grid-template-columns: max-content min-content;
+  width: auto;
+  column-gap: 10px;
+  align-items: center;
 }
 
 </style>

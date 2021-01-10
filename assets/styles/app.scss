@@ -41,6 +41,23 @@ h2{
   margin-bottom: 20px;
 }
 
+.clickable{
+  cursor: pointer;
+  &:hover{
+    color: var(--col-green);
+  }
+}
+
+.completed{
+  color: var(--col-grey);
+  text-decoration: line-through;
+}
+
+.font-icon{
+  display: inline;
+}
+
+
 .input-wrapper {
   margin: 10px 0;
 

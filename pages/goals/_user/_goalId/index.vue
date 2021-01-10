@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>{{ goal.name }}</h2>
-    <p @click="goalOnClick">
+    <p class="clickable" @click="goalOnClick">
       {{ status }}
     </p>
   </div>
@@ -13,7 +13,6 @@ export default {
   asyncData (context) {
     return context.$axios.$get(`goals/${context.params.goalId}.json`)
       .then((r) => {
-        console.log(r);
         return {
           goal: r
         }
