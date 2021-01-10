@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h2>Create sub-goal for {{ goal.name }}</h2>
-    <GoalForm :user="goal.user" :goal="goal" @submit="onSubmit" />
+    <h2>Create sub-goal for {{ parentGoal.name }}</h2>
+    <GoalForm :parent-goal-id="parentGoal.id" :user="parentGoal.user" @submit="onSubmit" />
   </div>
 </template>
 
@@ -9,10 +9,7 @@
 export default {
   name: 'CreateGoal',
   computed: {
-    status () {
-      return this.goal.completed ? 'Complete' : 'Incomplete'
-    },
-    goal () {
+    parentGoal () {
       return this.$store.getters['goals/byId'](this.$route.params.id)
     }
   },
@@ -20,7 +17,7 @@ export default {
     onSubmit (goalData) {
       this.$store.dispatch('goals/store', goalData)
         .then((_) => {
-          this.$router.push('/goals/' + goalData.user)
+          this.$router.push(`/goals/${goalData.user}/${goalData.parentGoalId}/`)
         })
     }
   }

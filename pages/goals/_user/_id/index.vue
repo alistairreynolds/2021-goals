@@ -5,10 +5,6 @@
       :goal="goal"
       @submit="saveGoal"
     />
-
-    <AppButton @click="addSubGoal">
-      Create sub-goal
-    </AppButton>
   </div>
 </template>
 
@@ -30,7 +26,8 @@ export default {
           return this.$router.push(`/goals/${editedGoal.user}/`)
         })
     },
-    addSubGoal () {
+    addSubGoal (event) {
+      event.preventDefault()
       this.$router.push(`/goals/${this.goal.user}/${this.goal.id}/create`)
     }
   }
