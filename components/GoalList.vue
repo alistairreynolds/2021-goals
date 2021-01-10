@@ -1,9 +1,9 @@
 <template>
-  <ul class="goals-list">
+  <ul class="goals-list mb-2" :class=" isParent ? 'numbered' : 'unordered'">
     <li
       v-for="goal of goals"
       :key="goal.id"
-      class="clickable mx-0"
+      class="clickable mx-0 mb-2"
       :class="{completed: goal.completed}"
       @click="openEditGoal(goal)"
     >
@@ -20,6 +20,10 @@ export default {
     goals: {
       type: Array,
       required: true
+    },
+    isParent: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -43,6 +47,13 @@ export default {
 
 .goals-list{
   width: max-content;
+  margin-left: 20px;
+  &.numbered{
+    list-style: decimal;
+  }
+  &.unordered{
+    list-style: outside;
+ }
 }
 
 </style>

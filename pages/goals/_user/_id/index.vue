@@ -1,10 +1,15 @@
 <template>
   <div>
-    <h2>{{ goal.name }}</h2>
+    <h2 v-if="subGoals.length > 0" class="clickable" @click="openUserGoals">
+      {{ goal.name }}
+    </h2>
+    <h2 v-else>
+      {{ goal.name }}
+    </h2>
 
     <div v-if="subGoals.length > 0">
       <h3>Sub-goals</h3>
-      <GoalList :goals="subGoals" />
+      <GoalList :goals="subGoals" :is-parent="true" />
     </div>
 
     <GoalForm
@@ -38,6 +43,9 @@ export default {
     addSubGoal (event) {
       event.preventDefault()
       this.$router.push(`/goals/${this.goal.user}/${this.goal.id}/create`)
+    },
+    openUserGoals () {
+      this.$router.push(`/goals/${this.goal.user}`)
     }
   }
 }
