@@ -27,7 +27,7 @@ export default {
       return this.goal.completed ? 'Complete' : 'Incomplete'
     },
     goal () {
-      return this.$store.getters['goals/byId'](this.$route.params.id)
+      return this.$store.getters['goals/byId'](this.$route.params.id) ?? {}
     },
     subGoals () {
       return this.$store.getters['goals/forParentGoalId'](this.goal.id)

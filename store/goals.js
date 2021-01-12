@@ -9,6 +9,10 @@ export const mutations = {
   set (state, goals) {
     state.goals = goals
   },
+  delete (state, goalToDelete) {
+    const index = state.goals.findIndex(goal => goalToDelete.id === goal.id)
+    state.goals.splice(index, 1)
+  },
   update (state, updatedGoal) {
     const index = state.goals.findIndex(goal => updatedGoal.id === goal.id)
     state.goals[index] = updatedGoal
@@ -26,6 +30,14 @@ export const actions = {
       .$post('goals.json', goalData)
       .then((r) => {
         vueContext.commit('add', { ...goalData, id: r.name })
+      })
+  },
+  // Add a new goal
+  async delete (vueContext, goal) {
+    return await this.$axios
+      .$delete(`goals/${goal.id}.json`)
+      .then((_) => {
+        return vueContext.commit('delete', goal)
       })
   },
   // Fetch goals on update

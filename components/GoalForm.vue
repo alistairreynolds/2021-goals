@@ -15,12 +15,18 @@
         <AppButton v-if="editedGoal.id" @click="addSubGoal">
           Create sub-goal
         </AppButton>
+
+        <AppButton v-if="editedGoal.id" class="red" @click="deleteGoal">
+          Delete
+        </AppButton>
       </div>
     </form>
   </div>
 </template>
 
 <script>
+import Swal from 'sweetalert2'
+
 export default {
   name: 'GoalForm',
   props: {
@@ -71,6 +77,25 @@ export default {
     addSubGoal (event) {
       event.preventDefault()
       this.$router.push(`/goals/${this.goal.user}/${this.goal.id}/create`)
+    },
+    async deleteGoal (event) {
+      event.preventDefault()
+
+      const confirmed = (await Swal.fire({
+        icon: 'warning',
+        title: 'Are you sure you want to delete this goal?',
+        showCancelButton: true
+      })).isConfirmed
+
+      if (!confirmed) {
+        return
+      }
+
+      const username = this.goal.user
+      this.$store.dispatch('goals/delete', this.goal)
+        .then((_) => {
+          return this.$router.push(`/goals/${username}`)
+        })
     }
   }
 }
