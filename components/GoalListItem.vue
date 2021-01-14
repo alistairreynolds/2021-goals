@@ -1,14 +1,15 @@
 <template>
   <li
     :key="goal.id"
-    class="clickable mx-0 mb-2"
-    :class="{completed: goal.completed}"
-    @click="openEditGoal"
+    class=" mx-0 mb-2"
   >
-    {{ goal.name }}
-    <em v-if="subGoalTotalCount > 0">
-      ({{ subGoalCompletedCount }}/{{ subGoalTotalCount }} completed)
-    </em>
+    <TickIcon :checked="goal.completed" class="clickable" @click="toggleComplete" />
+    <span class="clickable" @click="openEditGoal">
+      {{ goal.name }}
+      <em v-if="subGoalTotalCount > 0">
+        ({{ subGoalCompletedCount }}/{{ subGoalTotalCount }} completed)
+      </em>
+    </span>
   </li>
 </template>
 
@@ -34,6 +35,10 @@ export default {
   methods: {
     openEditGoal () {
       this.$router.push(`/goals/${this.goal.user}/${this.goal.id}`)
+    },
+    toggleComplete () {
+      console.log(this.goal)
+      this.$store.dispatch('goals/toggleStatus', this.goal)
     }
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <div>
     <header @click="navHome">
-      Reynolds 2021 Kitchen Goals
+      Reynolds 2021 Goals
     </header>
     <div id="app-wrapper">
       <Nuxt />

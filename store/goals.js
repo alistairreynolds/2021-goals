@@ -19,6 +19,7 @@ export const mutations = {
   },
   toggleGoalStatus (state, updatedGoal) {
     const index = state.goals.findIndex(goal => updatedGoal.id === goal.id)
+    console.log(updatedGoal)
     state.goals[index].completed = !updatedGoal.completed
   }
 }

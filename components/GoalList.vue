@@ -44,7 +44,8 @@ export default {
     list-style: decimal;
   }
   &.unordered{
-    list-style: outside;
+    list-style: none;
+    margin-left: 0;
  }
 }
 

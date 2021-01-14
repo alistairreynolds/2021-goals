@@ -4,9 +4,6 @@
       <AppInput v-model="editedGoal.name">
         Goal
       </AppInput>
-      <AppCheckbox v-model="editedGoal.completed" :checked="editedGoal.completed">
-        Completed
-      </AppCheckbox>
       <div class="flex flex-row col-gap-2 justify-end mt-4">
         <AppButton type="submit">
           Save
