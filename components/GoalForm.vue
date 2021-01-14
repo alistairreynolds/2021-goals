@@ -1,11 +1,11 @@
 <template>
   <div>
     <form @submit.prevent="onSubmit">
-      <AppInput v-model="editedGoal.name">
+      <AppInput v-if="!editedGoal.id" v-model="editedGoal.name">
         Goal
       </AppInput>
       <div class="flex flex-row col-gap-2 justify-end mt-4">
-        <AppButton type="submit">
+        <AppButton v-if="!editedGoal" type="submit">
           Save
         </AppButton>
 
@@ -64,7 +64,9 @@ export default {
   mounted () {
     if (!this.goal.id) {
       // This is a new goal so we should set the focus to the name input
-      document.querySelector('input').focus()
+      if (document.querySelector('input')) {
+        document.querySelector('input').focus()
+      }
     }
   },
   methods: {

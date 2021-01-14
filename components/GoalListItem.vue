@@ -1,19 +1,22 @@
 <template>
   <li
     :key="goal.id"
-    class=" mx-0 mb-2"
+    class="mx-0 mb-2"
   >
     <TickIcon :checked="goal.completed" class="clickable" @click="toggleComplete" />
-    <span class="clickable" @click="openEditGoal">
+    <span class="clickable mx-0" @click="openEditGoal">
       {{ goal.name }}
       <em v-if="subGoalTotalCount > 0">
         ({{ subGoalCompletedCount }}/{{ subGoalTotalCount }} completed)
       </em>
     </span>
+    <EditIcon class="clickable" @click="renameGoal" />
   </li>
 </template>
 
 <script>
+import Swal from 'sweetalert2'
+
 export default {
   name: 'GoalListItem',
   props: {
@@ -37,13 +40,25 @@ export default {
       this.$router.push(`/goals/${this.goal.user}/${this.goal.id}`)
     },
     toggleComplete () {
-      console.log(this.goal)
       this.$store.dispatch('goals/toggleStatus', this.goal)
+    },
+    renameGoal () {
+      Swal.fire({
+        input: 'text',
+        inputLabel: 'Goal',
+        inputValue: this.goal.name
+      }).then((r) => {
+        const editedGoal = { ...this.goal }
+        editedGoal.name = r.value
+        this.$store.dispatch('goals/rename', editedGoal)
+      })
     }
   }
 }
 </script>
 
 <style scoped lang="scss">
-
+span{
+  margin-top: -3px;
+}
 </style>

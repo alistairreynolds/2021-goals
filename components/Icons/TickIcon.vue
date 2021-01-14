@@ -1,5 +1,5 @@
 <template>
-  <FontIcon v-bind="$attrs" v-on="$listeners" class="w-6 h-6 font-icon">
+  <FontIcon v-bind="$attrs" class="w-6 h-6 font-icon mt-0" v-on="$listeners">
     <path
       :class="checked ? 'checked' : ''"
       fill-rule="evenodd"

@@ -1,5 +1,5 @@
 <template>
-  <ul class="goals-list mb-2" :class=" isParent ? 'numbered' : 'unordered'">
+  <ul class="goals-list mb-2">
     <GoalListItem
       v-for="goal in goals"
       :key="goal.id"
@@ -35,18 +35,22 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 
 .goals-list{
   width: max-content;
-  margin-left: 20px;
-  &.numbered{
-    list-style: decimal;
+ // &.numbered{
+ //   list-style: decimal;
+ // }
+ // &.unordered{
+ //   list-style: none;
+ //   margin-left: 0;
+ //}
+  li{
+    display: grid;
+    grid-template-columns: min-content 1fr min-content;
+    column-gap: 20px;
   }
-  &.unordered{
-    list-style: none;
-    margin-left: 0;
- }
 }
 
 </style>

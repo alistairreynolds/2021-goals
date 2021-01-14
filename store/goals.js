@@ -13,9 +13,9 @@ export const mutations = {
     const index = state.goals.findIndex(goal => goalToDelete.id === goal.id)
     state.goals.splice(index, 1)
   },
-  update (state, updatedGoal) {
+  rename (state, updatedGoal) {
     const index = state.goals.findIndex(goal => updatedGoal.id === goal.id)
-    state.goals[index] = updatedGoal
+    state.goals[index].name = updatedGoal.name
   },
   toggleGoalStatus (state, updatedGoal) {
     const index = state.goals.findIndex(goal => updatedGoal.id === goal.id)
@@ -53,14 +53,14 @@ export const actions = {
         vueContext.commit('set', goalsArray)
       })
   },
-  // Update goal data
-  update (vueContext, goal) {
+  // Rename goal
+  rename (vueContext, goal) {
     return this.$axios
       // Update on the server
       .$put(`goals/${goal.id}.json`, goal)
       .then((_) => {
         // Then push the result to the state
-        vueContext.commit('update', goal)
+        vueContext.commit('rename', goal)
       })
   },
   // Change goal "completed" status
