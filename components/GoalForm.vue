@@ -1,23 +1,6 @@
 <template>
   <div>
-    <form @submit.prevent="onSubmit">
-      <AppInput v-if="!editedGoal.id" v-model="editedGoal.name">
-        Goal
-      </AppInput>
-      <div class="flex flex-row col-gap-2 justify-end mt-4">
-        <AppButton v-if="!editedGoal" type="submit">
-          Save
-        </AppButton>
 
-        <AppButton v-if="editedGoal.id" @click="addSubGoal">
-          Create sub-goal
-        </AppButton>
-
-        <AppButton v-if="editedGoal.id" class="red" @click="deleteGoal">
-          Delete
-        </AppButton>
-      </div>
-    </form>
   </div>
 </template>
 

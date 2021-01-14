@@ -6,7 +6,6 @@
     <input
       :id="_uid"
       v-bind="$attrs"
-      :placeholder="label"
       :value="value"
       @input="$emit('input', $event.target.value)"
     >
@@ -25,6 +24,9 @@ export default {
       type: String,
       default: ''
     }
+  },
+  mounted () {
+    document.querySelector('input').focus()
   }
 }
 </script>
