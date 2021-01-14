@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!--  Header goal name   -->
     <h2 v-if="subGoals.length > 0" class="clickable" @click="openUserGoals">
       {{ goal.name }}
     </h2>
@@ -7,25 +8,14 @@
       {{ goal.name }}
     </h2>
 
+    <!--    List of sub goals -->
     <div v-if="subGoals.length > 0">
       <h3>Sub-goals</h3>
       <GoalList :goals="subGoals" :is-parent="true" />
     </div>
 
     <div v-if="adding">
-      <form @submit.prevent="storeNewGoal">
-        <AppInput v-model="newGoal.name" placeholder="Name" />
-
-        <div class="flex flex-row col-gap-2 justify-end mt-4">
-          <AppButton v-if="adding" type="submit">
-            Add
-          </AppButton>
-
-          <AppButton class="red" @click="adding = false">
-            Cancel
-          </AppButton>
-        </div>
-      </form>
+      <GoalForm :user="goal.user" :parent-goal-id="goal.id" @close="adding = false"/>
     </div>
     <div v-else>
       <div class="flex flex-row col-gap-2 justify-end mt-4">
@@ -62,22 +52,9 @@ export default {
       return this.$store.getters['goals/forParentGoalId'](this.goal.id)
     }
   },
-  mounted () {
-    this.newGoal = {
-      parentGoalId: this.goal ? this.goal.id : null,
-      user: this.goal ? this.goal.user : this.$route.params.user,
-      completed: false
-    }
-  },
   methods: {
     openUserGoals () {
       this.$router.push(`/goals/${this.goal.user}`)
-    },
-    storeNewGoal (event) {
-      event.preventDefault()
-      console.log(this.newGoal)
-      this.$store.dispatch('goals/store', this.newGoal)
-      this.adding = false
     },
     async deleteGoal (event) {
       event.preventDefault()
