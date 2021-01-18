@@ -48,9 +48,11 @@ export default {
         inputLabel: 'Goal',
         inputValue: this.goal.name
       }).then((r) => {
-        const editedGoal = { ...this.goal }
-        editedGoal.name = r.value
-        this.$store.dispatch('goals/rename', editedGoal)
+        if(r.value) {
+          const editedGoal = { ...this.goal }
+          editedGoal.name = r.value
+          this.$store.dispatch('goals/rename', editedGoal)
+        }
       })
     }
   }
